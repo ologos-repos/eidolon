@@ -1,0 +1,11 @@
+product: Eidolon
+version: '1.0'
+requirements:
+  REQ-EIDO-001:
+    title: Core PLM Engine
+    status: unthreaded
+    category: architecture
+    priority: high
+    traces: []
+    model_nodes: []
+    added: '2026-03-17T20:51:48.551793+00:00'
