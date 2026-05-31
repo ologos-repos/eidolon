@@ -1,0 +1,38 @@
+name: Release
+
+# Validate the Eidolon Go library on tag push.
+# Eidolon is a tag-only release (no binary) — consumers pin via module path + tag.
+# This workflow ensures the library builds and tests pass before a release is live.
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  validate:
+    name: Validate library
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Build library
+        run: go build ./...
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Report
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          echo "✅ Eidolon ${TAG} validated"
+          echo "   Module: github.com/ologos-repos/eidolon"
+          echo "   Consumers: go get github.com/ologos-repos/eidolon@${TAG}"

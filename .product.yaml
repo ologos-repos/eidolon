@@ -1,0 +1,7 @@
+# Product manifest — declares this repo's product attribution.
+# Required by PLM enforcement. Workers cannot commit without this file.
+product: Eidolon
+product_id: 84
+org: hermit-org
+repo: eidolon
+description: Eidolon — Go library for PLM-native agent gate and phase enforcement.
